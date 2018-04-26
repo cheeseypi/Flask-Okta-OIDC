@@ -17,9 +17,9 @@ def query_string_gen(url, **kwargs):
 def verify_token(token):
     data = {'client_id': environ.get('CLIENT_ID'), 'client_secret': environ.get('CLIENT_SECRET'), 'token': token, 'token_type_hint': 'access_token'}
     resp = requests.post(environ.get('OKTA_BASE_URL') + "/oauth2/default/v1/introspect", data).json()
-    print(resp)
     if not resp.get('active'):
         return False
+    # Additional verification here
     return True
 
 @app.route('/')
@@ -49,7 +49,6 @@ def signin():
     return redirect(url_for('homepage'))
 
 @app.route('/loginreq')
-@login_required
 def secret():
     if not verify_token(session.get('token')):
         abort(401)

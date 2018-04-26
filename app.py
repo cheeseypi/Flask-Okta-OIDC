@@ -2,11 +2,12 @@ from os import environ
 from functools import wraps
 
 import requests
-from flask import Flask, redirect, url_for, request, session, abort
+from flask import redirect, url_for, session, abort
+from connexion import FlaskApp, request
 
-app = Flask(__name__)
+app = FlaskApp(__name__)
 
-app.secret_key = 'thisisasecret'
+app.app.secret_key = 'thisisasecret'
 
 def query_string_gen(url, **kwargs):
     rtr = url + '?'
@@ -56,4 +57,4 @@ def secret():
     <h1>RESTRICTED INFO</h1>
     '''
 
-app.run('0.0.0.0')
+app.run(host='0.0.0.0')

@@ -1,4 +1,4 @@
-# Example OAuth2 Application using Okta and Flask
+# Example OpenID Connect Application using Okta and Flask
 This sample application uses okta together with flask for authentication purposes.
 
 I am publishing this because, as of now, any examples or tutorials on the subject are either non-existent or impossible to find.
